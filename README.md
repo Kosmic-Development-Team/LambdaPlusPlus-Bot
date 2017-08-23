@@ -6,22 +6,22 @@ Create and evaluate λ-Calculus and more in Discord!
 ## BrainFuck
 ### Symbols
 Classic  
-\>  | increment pointer  
-<   | decrement pointer  
-\+  | increment register  
-\-  | decrement register  
-\[  | start loop  
-\]  | end loop  
-,   | take input  
-\.  | print  
+\> increment pointer  
+<  decrement pointer  
+\+  increment register  
+\-  decrement register  
+\[  start loop  
+\]  end loop  
+,  take input  
+\.  print  
 
 New  
-%   | set pointer  
+%  set pointer  
 
 Meta  
-$   | Take input (not applicable with classic input mode, clears buffer before asking again on buffer mode)  
-&   | Toggle between character input and hex input  
-\!  | Flush output  
+$  Take input (not applicable with classic input mode, clears buffer before asking again on buffer mode)  
+&  Toggle between character input and hex input  
+\!  Flush output  
 
 ### Features
  - Has classic, deffered, and buffer input modes  
