@@ -1,19 +1,19 @@
-### λ++ Bot
+# λ++ Bot
 Create and evaluate λ-Calculus and more in Discord!
 
 ## λ-Calculus
 
 ## BrainFuck
-# Symbols
+### Symbols
 Classic
-> | increment pointer
+\> | increment pointer
 < | decrement pointer
-+ | increment register
-- | decrement register
-[ | start loop
-] | end loop
+\+ | increment register
+\- | decrement register
+\[ | start loop
+\] | end loop
 , | take input
-. | print
+\. | print
 
 New
 % | set pointer
@@ -21,9 +21,9 @@ New
 Meta
 $ | Take input (not applicable with classic input mode, clears buffer before asking again on buffer mode)
 & | Toggle between character input and hex input
-! | Flush output
+\! | Flush output
 
-# Features
+### Features
  - Has classic, deffered, and buffer input modes
  - Deffered input waits until an input register is edited, a take input command is issued, or the program ends to ask for all the character inputs at one time
  - Buffered input asks for input at the begining of the beginning (any length) and uses it as needed throughout the program, asking again if the buffer runs out
