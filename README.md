@@ -5,8 +5,8 @@ Create and evaluate λ-Calculus and more in Discord!
 
 ## BrainFuck
 ### Symbols
-Classic
-\> | increment pointer
+Classic\n
+\> | increment pointer\n
 < | decrement pointer
 \+ | increment register
 \- | decrement register
