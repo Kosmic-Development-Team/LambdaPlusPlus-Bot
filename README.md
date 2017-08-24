@@ -6,7 +6,7 @@ Create and evaluate λ-Calculus and more in Discord!
 ## BrainFuck
 ### Symbols
 Classic  
-\> increment pointer  
+\>  increment pointer  
 <  decrement pointer  
 \+  increment register  
 \-  decrement register  
@@ -20,7 +20,8 @@ New
 
 Meta  
 $  Take input (not applicable with classic input mode, clears buffer before asking again on buffer mode)  
-&  Toggle between character input and hex input  
+&  Toggle between character and hex input  
+\_  Toggle between character and hex output  
 \!  Flush output  
 
 ### Features
