@@ -21,7 +21,7 @@ New
 Meta  
 $  Take input (not applicable with classic input mode, clears buffer before asking again on buffer mode)  
 &  Toggle between character and hex input  
-\_  Toggle between character and hex output
+\_  Toggle between character and hex output  
 \!  Flush output  
 
 ### Features
