@@ -20,48 +20,56 @@ class Config:
             print('[config] Config file contains unexpected/missing sections')
             os._exit(1)
 
-        #bot config
-        self.token = config.get('Chat', 'Token', fallback=ConfigDefaults.token)
-        self.prefix = config.get('Chat', 'Prefix', fallback=ConfigDefaults.prefix)
-        self.channels = config.get('Chat', 'channel', fallback=ConfigDefaults.channels)
+        # bot config
+        self.token = config.get('Bot', 'Token', fallback=ConfigDefaults.token)
+        self.prefix = config.get('Bot', 'Prefix', fallback=ConfigDefaults.prefix)
+        self.channels = config.get('Bot', 'BindChannel', fallback=ConfigDefaults.channels).split()
 
-        #enabling interpreters
-        self.enable_lambda_calc = config.get('Interpreters', 'LambdaCalculus', fallback=ConfigDefaults.enable_lambda_calc)
+        print(self.channels, self.channels.__class__)
+
+        # enabling interpreters
+        self.enable_lambda_calc = config.get('Interpreters', 'LambdaCalculus',
+                                             fallback=ConfigDefaults.enable_lambda_calc)
         self.enable_bf = config.get('Interpreters', 'BrainFuck', fallback=ConfigDefaults.enable_bf)
 
-        #lambda config
+        # lambda config
         self.lambda_char = config.get('LambdaCalculus', 'Lambda', fallback=ConfigDefaults.lambda_char)
-        self.combine_vars_sintax = config.get('LambdaCalculus', 'CombineVariablesSintax', fallback=ConfigDefaults.combine_vars_sintax)
-        self.require_parentheses = config.get('LambdaCalculus', 'RequireParentheses', fallback=ConfigDefaults.require_parentheses)
+        self.combine_vars = config.get('LambdaCalculus', 'CombineVariables',
+                                              fallback=ConfigDefaults.combine_vars)
+        self.require_parentheses = config.get('LambdaCalculus', 'RequireParentheses',
+                                              fallback=ConfigDefaults.require_parentheses)
 
-        #bf config
-        self.input_when_changed = config.get('BrainFuck', 'AskInputWhenMutated', fallback=ConfigDefaults.input_when_changed)
+        # bf config
+        self.input_mode = config.get('BrainFuck', 'InputMode', fallback=ConfigDefaults.input_mode)
         self.use_hex = config.get('BrainFuck', 'UseHexadecimalInput', fallback=ConfigDefaults.use_hex)
         self.use_16bit = config.get('BrainFuck', 'Use16BitIntegers', fallback=ConfigDefaults.use_16bit)
-        self.return_finish = config.get('BrainFuck', 'FillNullWhenReturned', fallback=ConfigDefaults.return_finish)
+        self.return_fill = config.get('BrainFuck', 'FillNullWhenReturned', fallback=ConfigDefaults.return_fill)
+        self.use_extra_chars = config.get('BrainFuck', 'UseExtraCharCodes', fallback=ConfigDefaults.use_extra_chars)
         self.use_meta_chars = config.get('BrainFuck', 'UseMetaCharCodes', fallback=ConfigDefaults.use_meta_chars)
 
-
 class ConfigDefaults:
-    #bot defaults
+    # bot defaults
     token = None
     prefix = '&'
     channels = set()
 
-    #enableling interpreters/meta settings
+    # enabling interpreters/meta settings
     enable_lambda_calc = False
     enable_bf = False
-    #ad stuff for instance handling
+    # ad stuff for instance handling
 
-    #lambda calculus defaults
+    # lambda calculus defaults
     lambda_char = '~'
-    combine_vars_sintax = False  #~xy instead of ~x.~y
-    require_parentheses = False  #instead of having to assume things and you having to do debugging
+    combine_vars = False  # ~xy instead of ~x.~y
+    require_parentheses = False  # instead of having to assume things and you having to do debugging
 
-    #bf defaults
-    input_when_changed = True  #asks for an n-character input (or hex string) when one of the input addresses are changed, used, or use of meta chars
-    use_hex = False  #use hex values as input when requesting input (can be changed with meta chars)
-    use_16bit = False  #use 16 bit integers instead of 8 bit integers
-    return_finish = True  #when typing in more than one character, replaces rest of data with 00 (or 0000 for 16bit)
-    use_meta_chars = True  #enable non-classic bf chars for controling these settings while running the program
+    # bf defaults
+    input_mode = 0  # 0-classic 1-deferred 2-buffered
+    use_hex = False  # use hex values as input when requesting input (can be changed with meta chars)
+    use_16bit = False  # use 16 bit integers instead of 8 bit integers
+    return_fill = True  # when typing in more than one character, replaces rest of data with 00 (or 0000 for 16bit)
+    use_extra_chars = True  # enable extra bf chars for making logic easier
+    use_meta_chars = True  # enable meta bf chars for controlling these settings while running the program
+
+    options_file = 'options.ini'
 
