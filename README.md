@@ -1,6 +1,12 @@
 # λ++ Bot
 Create and evaluate λ-Calculus and more in Discord!
 
+## Project Instances
+### Feature
+ - Allows project to be saved for later
+ - Better organizes program settings, variable, code snippets, etc.
+ - Able to add a fellow Discord user to a project instance
+
 ## λ-Calculus
 
 ## BrainFuck
