@@ -1,5 +1,6 @@
 import discord
 import asyncio
+from bot.commands import handle_command
 
 from bot.configs import Config, ConfigDefaults
 
@@ -7,7 +8,6 @@ class LambdaBot(discord.Client):
     def __init__(self, config_file=ConfigDefaults.options_file):
         self.config = Config(config_file)
         super().__init__()
-
 
     def _cleanup(self):
         try:
@@ -42,14 +42,20 @@ class LambdaBot(discord.Client):
         await self.wait_until_ready()
         if message.channel.id in self.config.channels:
             if message.author.name != self.user.name:
-                if message.content[0] == self.config.prefix:
-                    await self.handle_command(message)
+                comm = self.is_command(message.content)
+                if comm != -1:
+                    await handle_command(message, comm, self)
+                else:
+                    print('[Message] @' + message.author.name, 'in', '#' + message.channel.name + ':', message.content)
 
-    async def handle_command(self, message):
-        command, *rest = (message.content[1:]).split(' ', 1)
-        print('[Command]', command, rest)
-        if command == 'echo':
-            await self.send_message(message.channel, rest[0])
+    def is_command(self, msg):
+        msg_length = len(msg)
+        for i in range(len(self.config.prefix)):
+            if msg_length > self.config.prefix_length[i]\
+                    and msg[0:self.config.prefix_length[i]] == self.config.prefix[i]:
+                return i
+        return -1
+
 
 if __name__ == '__main__':
     bot = LambdaBot()

@@ -22,10 +22,13 @@ class Config:
 
         # bot config
         self.token = config.get('Bot', 'Token', fallback=ConfigDefaults.token)
-        self.prefix = config.get('Bot', 'Prefix', fallback=ConfigDefaults.prefix)
+        self.prefix = config.get('Bot', 'Prefix', fallback=ConfigDefaults.prefix).split()
         self.channels = config.get('Bot', 'BindChannel', fallback=ConfigDefaults.channels).split()
 
-        print(self.channels, self.channels.__class__)
+        self.prefix_length = []
+        for i in range(len(self.prefix)):
+            self.prefix[i] = self.prefix[i].replace('_', ' ')
+            self.prefix_length.append(len(self.prefix[i]))
 
         # enabling interpreters
         self.enable_lambda_calc = config.get('Interpreters', 'LambdaCalculus',
@@ -36,8 +39,6 @@ class Config:
         self.lambda_char = config.get('LambdaCalculus', 'Lambda', fallback=ConfigDefaults.lambda_char)
         self.combine_vars = config.get('LambdaCalculus', 'CombineVariables',
                                               fallback=ConfigDefaults.combine_vars)
-        self.require_parentheses = config.get('LambdaCalculus', 'RequireParentheses',
-                                              fallback=ConfigDefaults.require_parentheses)
 
         # bf config
         self.input_mode = config.get('BrainFuck', 'InputMode', fallback=ConfigDefaults.input_mode)
@@ -61,7 +62,6 @@ class ConfigDefaults:
     # lambda calculus defaults
     lambda_char = '~'
     combine_vars = False  # ~xy instead of ~x.~y
-    require_parentheses = False  # instead of having to assume things and you having to do debugging
 
     # bf defaults
     input_mode = 0  # 0-classic 1-deferred 2-buffered
