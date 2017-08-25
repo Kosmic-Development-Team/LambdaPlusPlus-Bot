@@ -1,5 +1,6 @@
 import sys
 import gc
+import traceback
 
 
 def main():
@@ -19,6 +20,7 @@ def main():
         lb.run()
     except Exception as e:
         print('[Startup] An error occurred:', e)
+        print(traceback.print_exception(e, 1, None))
 
     gc.collect()
 
