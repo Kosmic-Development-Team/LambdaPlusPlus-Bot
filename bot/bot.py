@@ -4,6 +4,7 @@ from bot.commands import handle_command
 
 from bot.configs import Config, ConfigDefaults
 
+
 class LambdaBot(discord.Client):
     def __init__(self, config_file=ConfigDefaults.options_file):
         self.config = Config(config_file)
@@ -18,7 +19,7 @@ class LambdaBot(discord.Client):
         ongoing = asyncio.Task.all_tasks()
         gathered = asyncio.gather(*ongoing)
 
-        try:  #go through some save function first *********************************************************************
+        try:  # TODO: go through some save function first
             gathered.cancel()
             self.loop.run_until_complete(gathered)
             gathered.exception()

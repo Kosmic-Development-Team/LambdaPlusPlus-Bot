@@ -82,12 +82,14 @@ def _report_default_use(var, var_name, default_val):
         return default_val
     return var
 
+
 def _to_bool(cnf):
     if cnf == 'True':
         return True
     if cnf == 'False':
         return False
     return None
+
 
 def _to_int(cnf):
     try:
