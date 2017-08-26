@@ -21,7 +21,8 @@ class BrainfuckInstance(ProjectInstance):
     async def interpreter_print(self, channel, out):  # input is a list of integers
         # TODO: configure output based on the output setting
         output = str(out)
-        await self.bot.send_message(channel, 'Interpreter and output: `' + self.name + '`\n`' + output + '`')
+        await self.bot.send_message(channel, 'The program running on `' + self.name
+                                    + '` has outputted the following:\n`' + output + '`')
 
     async def handle_command(self, message, prefix, command, rest):
         if command in ['start', 's']:
@@ -32,13 +33,14 @@ class BrainfuckInstance(ProjectInstance):
     async def _comm_start(self, message, rest):
         nxt = await self.bf_interpreter.new_run(rest, message.channel)
         if nxt == 0:
-            await self.bot.send_message(message.channel, 'Interpreter program ended: `' + self.name + '`')
+            await self.bot.send_message(message.channel, 'the program running on `' + self.name + '` ended')
         elif nxt == 1:
-            await self.bot.send_message(message.channel, 'Interpreter needs input: `' + self.name + '`')
+            await self.bot.send_message(message.channel, 'The program running on `' + self.name + '` needs input')
         elif nxt == -1:
-            await self.bot.send_message(message.channel, 'Interpreter already running a program: `' + self.name + '`')
+            await self.bot.send_message(message.channel, 'A program is already running on`' + self.name + '`')
         elif nxt == -3:
-            await self.bot.send_message(message.channel, 'Interpreter encountered an error: `' + self.name + '`')
+            await self.bot.send_message(message.channel, 'The program running on `' + self.name
+                                        + '` has encountered an error')
 
     async def _comm_input(self, message, rest):
         # TODO: format input using the input_mode
@@ -48,12 +50,18 @@ class BrainfuckInstance(ProjectInstance):
         # above is bad
         nxt = await self.bf_interpreter.add_to_buffer(formatted_input, message.channel)
         if nxt == 0:
-            await self.bot.send_message(message.channel, 'Interpreter program ended: `' + self.name + '`')
+            await self.bot.send_message(message.channel, 'Program running on `' + self.name + '` ended')
         elif nxt == 1:
-            await self.bot.send_message(message.channel, 'Interpreter needs input: `' + self.name + '`')
+            await self.bot.send_message(message.channel, 'Program running on `' + self.name
+                                        + '` needs input\nTo supply more input to the program, use the command '
+                                          '`instance input`')
         elif nxt == -1:
-            await self.bot.send_message(message.channel, 'Interpreter not paused to take input: `' + self.name + '`')
+            await self.bot.send_message(message.channel, 'Program running on `' + self.name
+                                        + '` is not paused and therefor cannot take input')
         elif nxt == -2:
-            await self.bot.send_message(message.channel, 'Interpreter does not have a program running: `' + self.name + '`')
+            await self.bot.send_message(message.channel, '`' + self.name
+                                        + '` does not have a program running\nTo start a new program, use the command '
+                                          '`instance start`')
         elif nxt == -3:
-            await self.bot.send_message(message.channel, 'Interpreter encountered an error: `' + self.name + '`')
+            await self.bot.send_message(message.channel, 'The program running on `' + self.name
+                                        + '` has encountered an error')
