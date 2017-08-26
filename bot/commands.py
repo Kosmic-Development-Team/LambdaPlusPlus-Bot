@@ -1,4 +1,3 @@
-#from instances.test_instance import TestProjectInstance
 from instances.brainfuck_instance import BrainfuckInstance
 
 
