@@ -1,9 +1,8 @@
 class BrainfuckInterpreter:
 
-    def __init__(self, bits, input_mode, use_hex, use_extra, use_meta, max_iterations):
+    def __init__(self, bits, input_mode, use_extra, use_meta, max_iterations):
         self.bits = bits                # Bits per memory slot. True: 8 bits, False: 16 bits
         self.input_mode = input_mode    # Input mode. 0: Classic, 1: Deferred, 2: Buffered
-        self.use_hex = use_hex          # Character input mode. True: Hex, False: Characters
         self.use_extra = use_extra      # Whether to use extra characters (%).
         self.use_meta = use_meta        # Whether to use meta characters ($, &, !).
         self.max_iterations = max_iterations
